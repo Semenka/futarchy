@@ -1,1 +1,21 @@
 .claude/skills/gstack/
+
+# Node / bun
+node_modules/
+.next/
+dist/
+build/
+*.log
+
+# Foundry
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
