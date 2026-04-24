@@ -6,6 +6,7 @@ node_modules/
 dist/
 build/
 *.log
+*.tsbuildinfo
 
 # Foundry
 contracts/out/
