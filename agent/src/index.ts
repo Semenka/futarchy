@@ -147,6 +147,8 @@ async function main() {
     address: FACTORY,
     abi: proposalFactoryAbi,
     eventName: "ProposalCreated",
+    poll: true,
+    pollingInterval: 4000,
     onLogs: async (logs) => {
       for (const log of logs) {
         const id = log.args.proposalId!;
