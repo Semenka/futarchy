@@ -1,23 +1,23 @@
 # Demo recording
 
-`futarchy_demo.mp4` — **50-second narrated walk-through** of the futarchy stack
+`futarchy_demo.mp4` — **3-minute narrated walk-through** of the futarchy stack
 running live on Ethereum Sepolia.
 
-- 1280 × 800, 30 fps, h.264 video + AAC narration
-- 1.1 MB
-- Cropped to the app interface only — no editor windows or system chrome
-- Voiceover (Samantha, macOS `say`) explains the mechanic step by step
+- 1280 × 720 (720p), 30 fps, h.264 video + AAC narration
+- 4.0 MB
+- Cropped to the app interface only — no editor windows
+- Voiceover (Samantha, macOS `say`) covers project description, on-screen demo, and how it's built
 
 Hackathon submission asset attached at:
 **https://github.com/Semenka/futarchy/releases/tag/v0.1.0**
 
-## What's narrated
+## Narration outline
 
-1. Two prediction markets per proposal — IF-pass and IF-fail
-2. Three Gemini-powered traders forecast each branch with Kelly-sized positions on a constant-product AMM
-3. Trading window closes → higher TWAP wins → batch enters OZ Timelock
-4. After the delay, anyone executes; an oracle resolves both branches against the realized KPI
-5. Frontend shows two proposals already executed end-to-end on Sepolia
+| Time | Section |
+|---|---|
+| 0:00 – 0:35 | **What and why** — Hanson's "vote on values, bet on beliefs"; Vitalik's info finance post; MetaDAO on Solana |
+| 0:35 – 1:50 | **Demonstration** — what's on screen, two markets per proposal, Gemini traders + Kelly sizing, decide → Timelock → execute → resolve |
+| 1:50 – 2:55 | **How it's built** — 5 Solidity contracts, Foundry tests, TypeScript+viem agent, Next.js frontend |
 
 ## What's on screen
 
@@ -52,5 +52,5 @@ green because the market correctly directed the proposals to execute.
 | `executeBatch` | `0x53608cbc0f27fe2e6ba4d64163daf593ec5d2f8af22d2e08159858f8ebf0c3be` |
 | `resolve(1)` | `0x9c82b60bde52bf49f537c85762a1a1a0c7a0c23436628e8e24fca95bf685ae49` |
 
-The mp4 is gitignored (1.1 MB). Open with `open demo/futarchy_demo.mp4` or grab from
+The mp4 is gitignored (4.0 MB). Open with `open demo/futarchy_demo.mp4` or grab from
 the GitHub release.
