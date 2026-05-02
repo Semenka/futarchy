@@ -1,4 +1,10 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Futarchy logo" width="160" height="160"/>
+</p>
+
 # futarchy
+
+![cover](assets/cover.png)
 
 Vote values, bet beliefs.
 
@@ -6,7 +12,13 @@ A toy DAO governance module where every proposal spawns two conditional predicti
 
 Maps 1-to-1 to Vitalik's Nov 2024 [*From prediction markets to info finance*](https://vitalik.eth.limo/general/2024/11/27/info_finance.html). MetaDAO is the only live futarchy on Solana — this is a Sepolia EVM analogue.
 
-📹 **[Demo video (4:12)](https://github.com/Semenka/futarchy/releases/download/v0.1.0/futarchy_demo.mp4)** — live walkthrough on Sepolia.
+📹 **[Demo video (3:00, 720p, narrated)](https://github.com/Semenka/futarchy/releases/download/v0.1.0/futarchy_demo.mp4)** — project description, on-screen demonstration, and how it's built.
+
+## Screenshots
+
+| Frontend | Architecture | Tests |
+|---|---|---|
+| ![frontend](assets/screenshot-frontend.png) | ![architecture](assets/screenshot-architecture.png) | ![tests](assets/screenshot-tests.png) |
 
 ## Architecture
 

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <defs>
+    <linearGradient id="bgArch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b0b0f"/>
+      <stop offset="100%" stop-color="#0e1a16"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bgArch)"/>
+
+  <!-- Title -->
+  <text x="800" y="60" text-anchor="middle"
+        font-family="ui-sans-serif, system-ui, sans-serif"
+        font-size="36" font-weight="700" fill="#e8e8ec">Futarchy proposal lifecycle</text>
+  <text x="800" y="92" text-anchor="middle"
+        font-family="ui-sans-serif, system-ui, sans-serif"
+        font-size="18" fill="#94a3b8">propose → trade → decide → execute → resolve</text>
+
+  <!-- Step 1: Proposer + Factory -->
+  <g>
+    <rect x="80" y="180" width="280" height="140" rx="14" fill="#0e1a16" stroke="#1f2937" stroke-width="2"/>
+    <text x="220" y="220" text-anchor="middle" font-family="ui-sans-serif" font-size="22" font-weight="700" fill="#e8e8ec">Proposer</text>
+    <text x="220" y="252" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" fill="#94a3b8">createProposal(targets, calldatas,</text>
+    <text x="220" y="272" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" fill="#94a3b8">tradingWindow, kpiHi, seed)</text>
+    <text x="220" y="298" text-anchor="middle" font-family="ui-sans-serif" font-size="13" fill="#64748b">deposits 6 × seed collateral</text>
+  </g>
+
+  <!-- Step 2: Factory -->
+  <g>
+    <rect x="500" y="160" width="320" height="180" rx="14" fill="#0d1f17" stroke="#10b981" stroke-width="2"/>
+    <text x="660" y="200" text-anchor="middle" font-family="ui-sans-serif" font-size="22" font-weight="700" fill="#10b981">ProposalFactory</text>
+    <text x="660" y="232" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">prepareCondition × 2 (BCT)</text>
+    <text x="660" y="252" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">deploy FutarchyAMM × 2</text>
+    <text x="660" y="272" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">splitPosition + wrap + seed AMMs</text>
+    <text x="660" y="298" text-anchor="middle" font-family="ui-sans-serif" font-size="13" fill="#64748b">neutral 0.5 spot prior on each branch</text>
+    <text x="660" y="320" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" fill="#10b981">emit ProposalCreated</text>
+  </g>
+
+  <!-- Step 3: Two AMMs -->
+  <g>
+    <rect x="940" y="120" width="280" height="100" rx="14" fill="#0d1f17" stroke="#10b981" stroke-width="2"/>
+    <text x="1080" y="155" text-anchor="middle" font-family="ui-sans-serif" font-size="20" font-weight="700" fill="#10b981">FutarchyAMM</text>
+    <text x="1080" y="180" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">IF-PASS branch</text>
+    <text x="1080" y="200" text-anchor="middle" font-family="ui-sans-serif" font-size="12" fill="#64748b">x · y = k, UQ112 TWAP</text>
+
+    <rect x="940" y="280" width="280" height="100" rx="14" fill="#1a1f23" stroke="#475569" stroke-width="2"/>
+    <text x="1080" y="315" text-anchor="middle" font-family="ui-sans-serif" font-size="20" font-weight="700" fill="#94a3b8">FutarchyAMM</text>
+    <text x="1080" y="340" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">IF-FAIL branch</text>
+    <text x="1080" y="360" text-anchor="middle" font-family="ui-sans-serif" font-size="12" fill="#64748b">x · y = k, UQ112 TWAP</text>
+  </g>
+
+  <!-- Step 4: Agent -->
+  <g>
+    <rect x="1300" y="200" width="240" height="120" rx="14" fill="#0e1a16" stroke="#1f2937" stroke-width="2"/>
+    <text x="1420" y="240" text-anchor="middle" font-family="ui-sans-serif" font-size="20" font-weight="700" fill="#e8e8ec">Gemini Agent</text>
+    <text x="1420" y="266" text-anchor="middle" font-family="ui-sans-serif" font-size="13" fill="#94a3b8">3 personas</text>
+    <text x="1420" y="286" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" fill="#64748b">forecast → Kelly → swap</text>
+  </g>
+
+  <!-- Step 5: decide -->
+  <g>
+    <rect x="500" y="500" width="320" height="120" rx="14" fill="#0d1f17" stroke="#10b981" stroke-width="2"/>
+    <text x="660" y="540" text-anchor="middle" font-family="ui-sans-serif" font-size="22" font-weight="700" fill="#10b981">decide(proposalId)</text>
+    <text x="660" y="566" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">read TWAP[pass] vs TWAP[fail]</text>
+    <text x="660" y="586" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">if pass &gt; fail: timelock.scheduleBatch</text>
+    <text x="660" y="606" text-anchor="middle" font-family="ui-sans-serif" font-size="12" fill="#64748b">else: cancel — proposal does not execute</text>
+  </g>
+
+  <!-- Step 6: Timelock -->
+  <g>
+    <rect x="940" y="500" width="280" height="120" rx="14" fill="#0e1a16" stroke="#1f2937" stroke-width="2"/>
+    <text x="1080" y="540" text-anchor="middle" font-family="ui-sans-serif" font-size="22" font-weight="700" fill="#e8e8ec">OZ Timelock</text>
+    <text x="1080" y="568" text-anchor="middle" font-family="ui-sans-serif" font-size="14" fill="#94a3b8">delay window</text>
+    <text x="1080" y="590" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" fill="#10b981">executeBatch(...)</text>
+    <text x="1080" y="610" text-anchor="middle" font-family="ui-sans-serif" font-size="12" fill="#64748b">action lands on chain</text>
+  </g>
+
+  <!-- Step 7: Resolver -->
+  <g>
+    <rect x="500" y="780" width="320" height="140" rx="14" fill="#0d1f17" stroke="#10b981" stroke-width="2"/>
+    <text x="660" y="820" text-anchor="middle" font-family="ui-sans-serif" font-size="22" font-weight="700" fill="#10b981">Resolver</text>
+    <text x="660" y="848" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">read kpiTarget.balance at horizon</text>
+    <text x="660" y="868" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">normalize → numerators</text>
+    <text x="660" y="888" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">bct.reportPayouts × 2</text>
+    <text x="660" y="908" text-anchor="middle" font-family="ui-sans-serif" font-size="12" fill="#64748b">losing branch → 5000/5000 void</text>
+  </g>
+
+  <!-- Step 8: BCT -->
+  <g>
+    <rect x="940" y="780" width="280" height="140" rx="14" fill="#0e1a16" stroke="#1f2937" stroke-width="2"/>
+    <text x="1080" y="820" text-anchor="middle" font-family="ui-sans-serif" font-size="22" font-weight="700" fill="#e8e8ec">BinaryConditional</text>
+    <text x="1080" y="845" text-anchor="middle" font-family="ui-sans-serif" font-size="22" font-weight="700" fill="#e8e8ec">Tokens</text>
+    <text x="1080" y="872" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" fill="#94a3b8">redeem(positionId)</text>
+    <text x="1080" y="893" text-anchor="middle" font-family="ui-sans-serif" font-size="13" fill="#94a3b8">winners get paid; losers get 0.5</text>
+    <text x="1080" y="911" text-anchor="middle" font-family="ui-sans-serif" font-size="12" fill="#64748b">scalar payout numerators (CTF-compat)</text>
+  </g>
+
+  <!-- Arrows -->
+  <g stroke-width="3" fill="none">
+    <!-- Proposer → Factory -->
+    <line x1="360" y1="250" x2="500" y2="250" stroke="#94a3b8" marker-end="url(#arrow)"/>
+    <!-- Factory → AMM-pass -->
+    <line x1="820" y1="200" x2="940" y2="170" stroke="#10b981" marker-end="url(#arrowG)"/>
+    <!-- Factory → AMM-fail -->
+    <line x1="820" y1="290" x2="940" y2="330" stroke="#94a3b8" marker-end="url(#arrow)"/>
+    <!-- Agent → AMM-pass and AMM-fail -->
+    <line x1="1300" y1="240" x2="1220" y2="180" stroke="#94a3b8" marker-end="url(#arrow)"/>
+    <line x1="1300" y1="290" x2="1220" y2="330" stroke="#94a3b8" marker-end="url(#arrow)"/>
+    <!-- AMM-pass + AMM-fail → decide -->
+    <line x1="1080" y1="220" x2="780" y2="500" stroke="#94a3b8" stroke-dasharray="4 6" marker-end="url(#arrow)"/>
+    <line x1="1080" y1="380" x2="780" y2="540" stroke="#94a3b8" stroke-dasharray="4 6" marker-end="url(#arrow)"/>
+    <!-- decide → Timelock -->
+    <line x1="820" y1="560" x2="940" y2="560" stroke="#10b981" marker-end="url(#arrowG)"/>
+    <!-- Timelock → Resolver (via observation) -->
+    <line x1="1080" y1="620" x2="800" y2="780" stroke="#94a3b8" stroke-dasharray="4 6" marker-end="url(#arrow)"/>
+    <!-- Resolver → BCT -->
+    <line x1="820" y1="850" x2="940" y2="850" stroke="#10b981" marker-end="url(#arrowG)"/>
+  </g>
+
+  <!-- Footer -->
+  <text x="800" y="970" text-anchor="middle"
+        font-family="ui-monospace,monospace" font-size="14" fill="#475569">github.com/Semenka/futarchy · 5 contracts · 6 tests + 256-run fuzz · live on Sepolia</text>
+</svg>

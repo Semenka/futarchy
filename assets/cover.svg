@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0b0f"/>
+      <stop offset="60%" stop-color="#0e1d18"/>
+      <stop offset="100%" stop-color="#1a2e1f"/>
+    </linearGradient>
+    <linearGradient id="passLine2" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="failLine2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#475569" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#475569" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg2)"/>
+  <!-- Subtle dotted grid -->
+  <g fill="#1f2937" opacity="0.4">
+    <circle cx="80" cy="80" r="2"/><circle cx="200" cy="80" r="2"/><circle cx="320" cy="80" r="2"/><circle cx="440" cy="80" r="2"/><circle cx="560" cy="80" r="2"/><circle cx="680" cy="80" r="2"/><circle cx="800" cy="80" r="2"/><circle cx="920" cy="80" r="2"/><circle cx="1040" cy="80" r="2"/><circle cx="1160" cy="80" r="2"/>
+    <circle cx="80" cy="200" r="2"/><circle cx="200" cy="200" r="2"/><circle cx="320" cy="200" r="2"/><circle cx="440" cy="200" r="2"/><circle cx="560" cy="200" r="2"/><circle cx="680" cy="200" r="2"/><circle cx="800" cy="200" r="2"/><circle cx="920" cy="200" r="2"/><circle cx="1040" cy="200" r="2"/><circle cx="1160" cy="200" r="2"/>
+    <circle cx="80" cy="320" r="2"/><circle cx="200" cy="320" r="2"/><circle cx="320" cy="320" r="2"/><circle cx="440" cy="320" r="2"/><circle cx="560" cy="320" r="2"/><circle cx="680" cy="320" r="2"/><circle cx="800" cy="320" r="2"/><circle cx="920" cy="320" r="2"/><circle cx="1040" cy="320" r="2"/><circle cx="1160" cy="320" r="2"/>
+    <circle cx="80" cy="440" r="2"/><circle cx="200" cy="440" r="2"/><circle cx="320" cy="440" r="2"/><circle cx="440" cy="440" r="2"/><circle cx="560" cy="440" r="2"/><circle cx="680" cy="440" r="2"/><circle cx="800" cy="440" r="2"/><circle cx="920" cy="440" r="2"/><circle cx="1040" cy="440" r="2"/><circle cx="1160" cy="440" r="2"/>
+    <circle cx="80" cy="560" r="2"/><circle cx="200" cy="560" r="2"/><circle cx="320" cy="560" r="2"/><circle cx="440" cy="560" r="2"/><circle cx="560" cy="560" r="2"/><circle cx="680" cy="560" r="2"/><circle cx="800" cy="560" r="2"/><circle cx="920" cy="560" r="2"/><circle cx="1040" cy="560" r="2"/><circle cx="1160" cy="560" r="2"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="80" y="200"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+        font-size="92" font-weight="800"
+        fill="#e8e8ec" letter-spacing="-3">Futarchy</text>
+  <text x="80" y="260"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+        font-size="32" font-weight="500"
+        fill="#94a3b8" letter-spacing="-1">Vote values, bet beliefs.</text>
+  <text x="80" y="312"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+        font-size="22" font-weight="400"
+        fill="#64748b">AI-traded conditional markets for DAO governance · Sepolia</text>
+  <!-- Two market paths starting from a common origin on the right side -->
+  <g fill="none" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M 700 480 L 1180 480" stroke="url(#failLine2)"/>
+    <path d="M 700 480 C 820 480, 920 420, 1180 200" stroke="url(#passLine2)"/>
+  </g>
+  <!-- Endpoint markers -->
+  <circle cx="700" cy="480" r="9" fill="#94a3b8"/>
+  <circle cx="1180" cy="480" r="11" fill="#475569"/>
+  <circle cx="1180" cy="200" r="13" fill="#10b981"/>
+  <!-- Labels -->
+  <text x="1180" y="180" text-anchor="end"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="18" fill="#10b981">IF PASS</text>
+  <text x="1180" y="510" text-anchor="end"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="18" fill="#94a3b8">IF FAIL</text>
+  <!-- Footer -->
+  <text x="80" y="600"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="16" fill="#475569">github.com/Semenka/futarchy</text>
+</svg>

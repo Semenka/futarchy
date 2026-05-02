@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <linearGradient id="bgT" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0e"/>
+      <stop offset="100%" stop-color="#0d1219"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bgT)"/>
+
+  <!-- Window chrome -->
+  <rect x="60" y="60" width="1480" height="780" rx="14" fill="#0d141d" stroke="#1f2937" stroke-width="2"/>
+  <rect x="60" y="60" width="1480" height="44" rx="14" fill="#111827"/>
+  <rect x="60" y="92" width="1480" height="12" fill="#111827"/>
+  <circle cx="92" cy="82" r="7" fill="#ef4444"/>
+  <circle cx="118" cy="82" r="7" fill="#f59e0b"/>
+  <circle cx="144" cy="82" r="7" fill="#10b981"/>
+  <text x="800" y="88" text-anchor="middle" font-family="ui-monospace,monospace" font-size="14" fill="#94a3b8">contracts — forge test</text>
+
+  <!-- Body -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20">
+    <text x="100" y="160" fill="#94a3b8">$ <tspan fill="#e8e8ec">forge test</tspan></text>
+    <text x="100" y="200" fill="#64748b">Compiling 22 files with Solc 0.8.26</text>
+    <text x="100" y="226" fill="#64748b">Solc 0.8.26 finished in 6.2s</text>
+    <text x="100" y="252" fill="#10b981">Compiler run successful!</text>
+
+    <text x="100" y="305" fill="#cbd5e1">Ran 6 tests for test/Futarchy.t.sol:FutarchyTest</text>
+    <text x="100" y="345" fill="#94a3b8">[<tspan fill="#10b981" font-weight="700">PASS</tspan>] testFuzz_HigherPushExecutes(uint96,uint96) <tspan fill="#64748b">(runs: 256)</tspan></text>
+    <text x="100" y="375" fill="#94a3b8">[<tspan fill="#10b981" font-weight="700">PASS</tspan>] test_CreateProposal_InitialState() <tspan fill="#64748b">(gas: 5,327,832)</tspan></text>
+    <text x="100" y="405" fill="#94a3b8">[<tspan fill="#10b981" font-weight="700">PASS</tspan>] test_FailWins_NoExecution() <tspan fill="#64748b">(gas: 5,492,135)</tspan></text>
+    <text x="100" y="435" fill="#94a3b8">[<tspan fill="#10b981" font-weight="700">PASS</tspan>] test_PassWins_TimelockExecutes_AndResolves() <tspan fill="#64748b">(gas: 5,593,338)</tspan></text>
+    <text x="100" y="465" fill="#94a3b8">[<tspan fill="#10b981" font-weight="700">PASS</tspan>] test_SplitMergeRoundTrip() <tspan fill="#64748b">(gas: 191,196)</tspan></text>
+    <text x="100" y="495" fill="#94a3b8">[<tspan fill="#10b981" font-weight="700">PASS</tspan>] test_VoidResolutionRedeemsAtHalf() <tspan fill="#64748b">(gas: 201,146)</tspan></text>
+
+    <text x="100" y="540" fill="#cbd5e1">Suite result: <tspan fill="#10b981" font-weight="700">ok</tspan>.  <tspan fill="#10b981">6 passed</tspan>;  0 failed;  0 skipped;  finished in 113.28ms</text>
+    <text x="100" y="580" fill="#cbd5e1">Ran 1 test suite: <tspan fill="#10b981" font-weight="700">6 tests passed</tspan>, 0 failed</text>
+  </g>
+
+  <!-- Annotations -->
+  <g font-family="ui-sans-serif, system-ui, sans-serif">
+    <rect x="100" y="640" width="1400" height="160" rx="10" fill="#0e1a16" stroke="#10b981" stroke-width="1"/>
+    <text x="120" y="675" font-size="22" font-weight="700" fill="#10b981">What's covered</text>
+    <text x="120" y="710" font-size="16" fill="#cbd5e1">• Split / merge round-trip on the conditional token</text>
+    <text x="120" y="734" font-size="16" fill="#cbd5e1">• Void-resolution redemption at half collateral</text>
+    <text x="120" y="758" font-size="16" fill="#cbd5e1">• End-to-end pass branch: propose → trade → decide → timelock execute → resolve</text>
+    <text x="120" y="782" font-size="16" fill="#cbd5e1">• Fuzz invariant (256 runs): higher-push side always wins decide()</text>
+  </g>
+</svg>
