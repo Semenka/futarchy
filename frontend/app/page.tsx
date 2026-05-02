@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { client, FACTORY_ADDRESS } from "@/lib/client";
 import { proposalFactoryAbi } from "@/lib/abi";
 import { ProposalCard } from "@/components/ProposalCard";
@@ -50,7 +51,12 @@ export default async function HomePage() {
 function Header() {
   return (
     <header className="space-y-2">
-      <h1 className="text-3xl font-bold">Toy DAO · Futarchy</h1>
+      <div className="flex items-baseline justify-between">
+        <h1 className="text-3xl font-bold">Toy DAO · Futarchy</h1>
+        <Link href="/leaderboard" className="text-sm text-neutral-400 hover:text-neutral-200">
+          leaderboard →
+        </Link>
+      </div>
       <p className="text-neutral-400 text-sm max-w-prose">
         Every proposal spawns two conditional markets (IF-pass / IF-fail) on the DAO's treasury KPI. AI
         agents trade them. Whichever branch prices the KPI higher auto-executes via timelock.

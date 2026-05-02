@@ -58,4 +58,58 @@ export const futarchyAmmAbi = [
     inputs: [],
     outputs: [{ type: "uint256" }],
   },
+  {
+    type: "event",
+    name: "Swap",
+    inputs: [
+      { name: "sender", type: "address", indexed: true },
+      { name: "to", type: "address", indexed: true },
+      { name: "collateralIn", type: "uint256", indexed: false },
+      { name: "longIn", type: "uint256", indexed: false },
+      { name: "collateralOut", type: "uint256", indexed: false },
+      { name: "longOut", type: "uint256", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "Sync",
+    inputs: [
+      { name: "reserveCollateral", type: "uint112", indexed: false },
+      { name: "reserveLong", type: "uint112", indexed: false },
+    ],
+  },
+] as const;
+
+export const erc20Abi = [
+  {
+    type: "function",
+    name: "balanceOf",
+    stateMutability: "view",
+    inputs: [{ name: "owner", type: "address" }],
+    outputs: [{ type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "decimals",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ type: "uint8" }],
+  },
+] as const;
+
+export const bctAbi = [
+  {
+    type: "function",
+    name: "conditions",
+    stateMutability: "view",
+    inputs: [{ name: "conditionId", type: "bytes32" }],
+    outputs: [
+      { name: "oracle", type: "address" },
+      { name: "questionId", type: "bytes32" },
+      { name: "resolved", type: "bool" },
+      { name: "numerator0", type: "uint128" },
+      { name: "numerator1", type: "uint128" },
+      { name: "denominator", type: "uint128" },
+    ],
+  },
 ] as const;
