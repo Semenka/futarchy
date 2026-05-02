@@ -18,6 +18,27 @@ export const proposalFactoryAbi = [
   },
   {
     type: "function",
+    name: "nextProposalId",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "getKPIConfig",
+    stateMutability: "view",
+    inputs: [{ name: "proposalId", type: "uint256" }],
+    outputs: [
+      { name: "target", type: "address" },
+      { name: "token", type: "address" },
+      { name: "observationBlock", type: "uint256" },
+      { name: "lo", type: "uint256" },
+      { name: "hi", type: "uint256" },
+      { name: "state", type: "uint8" },
+    ],
+  },
+  {
+    type: "function",
     name: "getProposal",
     stateMutability: "view",
     inputs: [{ name: "proposalId", type: "uint256" }],

@@ -42,6 +42,26 @@ async function handleProposal(proposalId: bigint) {
     functionName: "getLongPrice",
   })) as bigint;
 
+  const [kpiTarget, kpiToken] = (await pub.readContract({
+    address: FACTORY,
+    abi: proposalFactoryAbi,
+    functionName: "getKPIConfig",
+    args: [proposalId],
+  })) as [Address, Address, bigint, bigint, bigint, number];
+
+  let treasuryBalanceNow: number;
+  if (kpiToken === "0x0000000000000000000000000000000000000000") {
+    treasuryBalanceNow = Number(formatUnits(await pub.getBalance({ address: kpiTarget }), 18));
+  } else {
+    const bal = (await pub.readContract({
+      address: kpiToken,
+      abi: erc20Abi,
+      functionName: "balanceOf",
+      args: [kpiTarget],
+    })) as bigint;
+    treasuryBalanceNow = Number(formatUnits(bal, 18));
+  }
+
   const ctx: ProposalContext = {
     proposalId,
     txSummary: `Execute ${values.length} transaction(s); total ETH value ${formatUnits(
@@ -53,7 +73,7 @@ async function handleProposal(proposalId: bigint) {
     kpiHi: Number(formatUnits(kpiHi, 18)),
     currentPassPrice: Number(passSpot) / 1e18,
     currentFailPrice: Number(failSpot) / 1e18,
-    treasuryBalanceNow: 100, // TODO: read from chain in v2
+    treasuryBalanceNow,
   };
 
   for (const p of PERSONAS) {
@@ -99,6 +119,29 @@ async function main() {
   }
 
   console.log("futarchy agent: watching factory", FACTORY);
+
+  // Process any open proposals already on-chain so a restart doesn't miss them.
+  const next = (await pub.readContract({
+    address: FACTORY,
+    abi: proposalFactoryAbi,
+    functionName: "nextProposalId",
+  })) as bigint;
+  for (let i = 0n; i < next; i++) {
+    const r = (await pub.readContract({
+      address: FACTORY,
+      abi: proposalFactoryAbi,
+      functionName: "getProposal",
+      args: [i],
+    })) as readonly [unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown, number];
+    if (r[9] === 1) {
+      console.log("backfilling open proposal", i.toString());
+      try {
+        await handleProposal(i);
+      } catch (e) {
+        console.error("backfill error:", e);
+      }
+    }
+  }
 
   pub.watchContractEvent({
     address: FACTORY,

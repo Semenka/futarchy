@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 import type { Persona } from "./personas";
 
 export interface ProposalContext {
@@ -50,7 +50,17 @@ Respond with ONLY a JSON object matching this schema:
     systemInstruction: persona.systemPrompt,
     generationConfig: {
       responseMimeType: "application/json",
-      maxOutputTokens: 400,
+      maxOutputTokens: 4096,
+      responseSchema: {
+        type: SchemaType.OBJECT,
+        properties: {
+          eKpiPass: { type: SchemaType.NUMBER },
+          eKpiFail: { type: SchemaType.NUMBER },
+          confidence: { type: SchemaType.NUMBER },
+          reasoning: { type: SchemaType.STRING },
+        },
+        required: ["eKpiPass", "eKpiFail", "confidence", "reasoning"],
+      },
     },
   });
 
