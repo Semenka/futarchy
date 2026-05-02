@@ -7,7 +7,7 @@ import {
   parseUnits,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { baseSepolia } from "viem/chains";
+import { sepolia } from "viem/chains";
 import { erc20Abi, futarchyAmmAbi } from "./abi";
 import { kellySize } from "./kelly";
 import type { Forecast } from "./forecast";
@@ -16,13 +16,13 @@ const RPC_URL = process.env.RPC_URL ?? "http://localhost:8545";
 const USDC = process.env.USDC_ADDRESS as Address;
 
 export const pub = createPublicClient({
-  chain: baseSepolia,
+  chain: sepolia,
   transport: http(RPC_URL),
 });
 
 export function walletFromKey(pk: Hex) {
   const account = privateKeyToAccount(pk);
-  return createWalletClient({ account, chain: baseSepolia, transport: http(RPC_URL) });
+  return createWalletClient({ account, chain: sepolia, transport: http(RPC_URL) });
 }
 
 function normalize(raw: number, lo: number, hi: number): number {

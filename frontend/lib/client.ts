@@ -1,10 +1,10 @@
 import { createPublicClient, http } from "viem";
-import { baseSepolia } from "viem/chains";
+import { sepolia } from "viem/chains";
 
-const RPC = process.env.NEXT_PUBLIC_RPC_URL ?? "https://sepolia.base.org";
+const RPC = process.env.NEXT_PUBLIC_RPC_URL ?? "https://rpc.sepolia.org";
 
 export const client = createPublicClient({
-  chain: baseSepolia,
+  chain: sepolia,
   transport: http(RPC),
 });
 

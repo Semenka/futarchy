@@ -1,29 +1,27 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { Persona } from "./personas";
 
 export interface ProposalContext {
   proposalId: bigint;
-  txSummary: string; // human-readable description of what executes
-  kpiDescription: string; // what the KPI is (e.g. "DAO treasury ETH balance at block N")
-  kpiLo: number; // lower bound (same units as KPI)
-  kpiHi: number; // upper bound
-  currentPassPrice: number; // normalized [0,1]
-  currentFailPrice: number; // normalized [0,1]
-  treasuryBalanceNow: number; // the current KPI value (helpful prior)
+  txSummary: string;
+  kpiDescription: string;
+  kpiLo: number;
+  kpiHi: number;
+  currentPassPrice: number;
+  currentFailPrice: number;
+  treasuryBalanceNow: number;
 }
 
 export interface Forecast {
-  eKpiPass: number; // expected KPI value if proposal passes (raw units)
-  eKpiFail: number; // expected KPI value if proposal fails (raw units)
-  confidence: number; // [0,1]
-  reasoning: string; // one or two sentences
+  eKpiPass: number;
+  eKpiFail: number;
+  confidence: number;
+  reasoning: string;
 }
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+const MODEL = "gemini-2.5-flash";
 
-const MODEL = "claude-sonnet-4-6";
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? "");
 
 export async function forecast(persona: Persona, ctx: ProposalContext): Promise<Forecast> {
   const userPrompt = `Proposal #${ctx.proposalId}
@@ -47,17 +45,17 @@ Respond with ONLY a JSON object matching this schema:
   "reasoning": "<one or two sentences>"
 }`;
 
-  const msg = await anthropic.messages.create({
+  const model = genAI.getGenerativeModel({
     model: MODEL,
-    max_tokens: 400,
-    system: persona.systemPrompt,
-    messages: [{ role: "user", content: userPrompt }],
+    systemInstruction: persona.systemPrompt,
+    generationConfig: {
+      responseMimeType: "application/json",
+      maxOutputTokens: 400,
+    },
   });
 
-  const text = msg.content
-    .map((c) => (c.type === "text" ? c.text : ""))
-    .join("")
-    .trim();
+  const result = await model.generateContent(userPrompt);
+  const text = result.response.text().trim();
 
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) throw new Error(`no JSON in reply: ${text}`);
